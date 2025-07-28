@@ -8,11 +8,11 @@ const Footer = () => {
         {/* Left Section: Logo & Social */}
         <div>
           <img
-            src="https://i.imgur.com/b132tH6.png"  // Or your real logo path
+            src="./assets/logo.png"  // Or your real logo path
             alt="MWNAM Logo"
             className="h-16 mb-4"
           />
-          <p className="mb-4 text-sm leading-relaxed font-ibmplex">
+          <p className="mb-4 text-sm leading-relaxed" style={{ fontFamily: "'IBM Plex Sans', sans-serif" }}>
             Empowering communities through<br />
             social welfare, entertainment, and<br />
             education.
@@ -43,8 +43,8 @@ const Footer = () => {
         </div>
         {/* Quick Links */}
         <div>
-          <h4 className="text-white text-md font-quicksand mb-4">Quick Links</h4>
-          <ul className="space-y-2 text-sm">
+          <h4 className="text-white text-md mb-4" style={{ fontFamily: "'Quicksand', sans-serif" }}>Quick Links</h4>
+          <ul className="space-y-2 text-sm" style={{ fontFamily: "'IBM Plex Sans', sans-serif" }}>
             <li><a href="/" className="hover:text-[#caa23a] font-ibmplex">Home</a></li>
             <li><a href="/about" className="hover:text-[#caa23a] font-ibmplex">About Us</a></li>
             <li><a href="/activities" className="hover:text-[#caa23a] font-ibmplex">Activities</a></li>
@@ -54,8 +54,8 @@ const Footer = () => {
         </div>
         {/* Programs */}
         <div>
-          <h4 className="text-white text-md font-quicksand mb-4">Programs</h4>
-          <ul className="space-y-2 text-sm font-ibmplex">
+          <h4 className="text-white text-md  mb-4" style={{ fontFamily: "'Quicksand', sans-serif" }} >Programs</h4>
+          <ul className="space-y-2 text-sm" style={{ fontFamily: "'IBM Plex Sans', sans-serif" }}>
             <li><a href="#" className="hover:text-[#caa23a]">Social Welfare</a></li>
             <li><a href="#" className="hover:text-[#caa23a]">Entertainment</a></li>
             <li><a href="#" className="hover:text-[#caa23a]">Education</a></li>
@@ -65,13 +65,14 @@ const Footer = () => {
         </div>
         {/* Contact Us */}
         <div>
-          <h4 className="text-white text-md font-quicksand mb-4">Contact Us</h4>
-          <ul className="space-y-2 text-sm font-ibmplex">
-            <li className="flex items-center">
+          <h4 className="text-white text-md mb-4" style={{ fontFamily: "'Quicksand', sans-serif" }}>Contact Us</h4>
+          <ul className="space-y-2 text-sm" style={{ fontFamily: "'IBM Plex Sans', sans-serif" }}>
+            <li className="flex items-center"
+>
               <span className="material-icons text-[#caa23a] mr-2">location_on</span>
               123 Community Street, City, Country
             </li>
-            <li className="flex items-center">
+            <li className="flex items-center " >
               <span className="material-icons text-[#caa23a] mr-2">email</span>
               info@mwnam.org
             </li>

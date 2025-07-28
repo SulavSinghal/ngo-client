@@ -40,20 +40,20 @@ const BecomeVolunteer = () => (
       {/* Left image column */}
       <div className="md:w-1/2 w-full h-52 md:h-auto bg-gray-300 flex items-center justify-center">
         <img
-          src="https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=2070&auto=format&fit=crop" // Replace with your real image asset URL or import
+          src="" // Replace with your real image asset URL or import
           alt="Volunteering"
           className="object-cover w-full h-full"
         />
       </div>
       {/* Right content column */}
       <div className="md:w-1/2 w-full bg-[#2C7A7B] p-8 flex flex-col justify-center">
-        <h2 className="text-white text-2xl md:text-3xl font-bold mb-4">
+        <h2 className="text-white text-2xl md:text-3xl font-bold mb-4" style={{ fontFamily: "'Merriweather', serif" }}>
           Become a Volunteer
         </h2>
-        <p className="text-[#d8f2f3] mb-6 leading-relaxed text-base">
+        <p className="text-[#d8f2f3] mb-6 leading-relaxed text-base" style={{ fontFamily: "'IBM Plex Sans', sans-serif" }}>
           Join our growing community of passionate volunteers and help us create meaningful impact. Together, we can make a difference in the lives of those who need it most.
         </p>
-        <ul className="mb-8 space-y-4">
+        <ul className="mb-8 space-y-4" style={{ fontFamily: "'IBM Plex Sans', sans-serif" }}>
           {perks.map(({ icon, text }, idx) => (
             <li key={idx} className="flex items-center gap-4">
               {icon}
