@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-// The API URL should be defined once, outside the component, for clarity.
-// Vite uses import.meta.env instead of process.env
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
 // Sub-component for individual testimonial cards
@@ -11,7 +9,7 @@ const TestimonialCard = ({ testimonial }) => (
     <div className="flex-grow">
       <svg width="22" height="24" viewBox="0 0 22 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 
-<g clip-path="url(#clip0_40_121)">
+<g clipPath="url(#clip0_40_121)">
 
 <path d="M0.65625 10.125C0.65625 7.01719 3.17344 4.5 6.28125 4.5H6.65625C7.48594 4.5 8.15625 5.17031 8.15625 6C8.15625 6.82969 7.48594 7.5 6.65625 7.5H6.28125C4.83281 7.5 3.65625 8.67656 3.65625 10.125V10.5H6.65625C8.31094 10.5 9.65625 11.8453 9.65625 13.5V16.5C9.65625 18.1547 8.31094 19.5 6.65625 19.5H3.65625C2.00156 19.5 0.65625 18.1547 0.65625 16.5V15V13.5V10.125ZM12.6562 10.125C12.6562 7.01719 15.1734 4.5 18.2812 4.5H18.6562C19.4859 4.5 20.1562 5.17031 20.1562 6C20.1562 6.82969 19.4859 7.5 18.6562 7.5H18.2812C16.8328 7.5 15.6562 8.67656 15.6562 10.125V10.5H18.6562C20.3109 10.5 21.6562 11.8453 21.6562 13.5V16.5C21.6562 18.1547 20.3109 19.5 18.6562 19.5H15.6562C14.0016 19.5 12.6562 18.1547 12.6562 16.5V15V13.5V10.125Z" fill="#D4AF37"/>
 

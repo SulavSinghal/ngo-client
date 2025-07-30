@@ -40,7 +40,7 @@ const BecomeVolunteer = () => (
       {/* Left image column */}
       <div className="md:w-1/2 w-full h-52 md:h-auto bg-gray-300 flex items-center justify-center">
         <img
-          src="" // Replace with your real image asset URL or import
+          src="null" // Replace with your real image asset URL or import
           alt="Volunteering"
           className="object-cover w-full h-full"
         />
