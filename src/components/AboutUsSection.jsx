@@ -1,6 +1,7 @@
 // components/AboutUsSection.jsx
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
 // --- SVG Icon Components ---
 
@@ -56,7 +57,7 @@ const AboutUsSection = () => {
   useEffect(() => {
     const fetchContent = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/about-us');
+        const response = await axios.get(`${API_URL}/api/about-us`);
         setContent(response.data);
       } catch (err) {
         setError('Failed to load content.');
@@ -93,31 +94,19 @@ const AboutUsSection = () => {
     }}
   />
 
-  <h1
+  <h1 class="text-3xl font-bold mb-4 text-[#1A2A6C]"
     style={{
-      color: '#22316A',
-      fontWeight: 700,
-      fontSize: '2.35rem',
-      margin: '0 0 0 0',
-      letterSpacing: '-0.5px',
       fontFamily: "'Merriweather', serif",
     }}
   >
-    About Us
+    {content.heading}
   </h1>
 
-  <p
-    style={{
-      color: '#555',
-      maxWidth: '780px',
-      margin: '0 auto 52px auto',
-      lineHeight: 1.7,
-      fontSize: '1.19rem',
-      fontFamily: "'IBM Plex Sans', sans-serif",
-    }}
-  >
-    {content.description}
-  </p>
+  
+  <p class="font-sans text-gray-700 max-w-6xl mx-auto mb-12 leading-relaxed text-md">
+  {content.description}
+</p>
+
 
   <div
     style={{
