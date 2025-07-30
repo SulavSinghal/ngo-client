@@ -69,7 +69,7 @@ const VoicesOfImpact = () => {
   return (
     <section className="bg-[#1A2A6C] py-20 px-4 font-sans">
       <div className="container mx-auto text-center">
-        <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 font-serif">
+        <h2 className="text-4xl md:text-4xl font-bold text-white mb-4 font-serif" style={{ fontFamily: "'Merriweather', serif" }}>
           Voices of Impact
         </h2>
         <p className="text-lg text-[#D4AF37CC] max-w-2xl mx-auto mb-12 font-display">
