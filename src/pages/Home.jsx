@@ -1,13 +1,15 @@
 import React from 'react';
-import HeroSection from '../components/HeroSection';
-import BecomeVolunteer from '../components/BecomeVolunteer';
-import VoicesOfImpact from '../components/VoicesOfImpact';
-import AboutUsSection from '../components/AboutUsSection';
+import HeroSection from '../components/HomePage/Homepage';
+import BecomeVolunteer from '../components/HomePage/BecomeVolunteer';
+import VoicesOfImpact from '../components/HomePage/VoicesOfImpact';
+import AboutUsSection from '../components/HomePage/AboutUsSection';
+import ActivitiesSection from '../components/HomePage/ActivitiesSection';
 const Home = () => (
   <div>
     {/* Other home page sections */}
     <HeroSection />
     <AboutUsSection />
+      <ActivitiesSection limit={3} />
     <VoicesOfImpact />
     <BecomeVolunteer />
     {/* Other home page sections */}

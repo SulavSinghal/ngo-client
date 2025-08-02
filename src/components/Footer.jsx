@@ -4,7 +4,7 @@ import React from 'react';
 const Footer = () => {
   return (
     <footer className="bg-[#1A2A6C] text-[#bbc4eb] font-quicksand">
-      <div className="container mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-4 gap-8 px-10">
+      <div className="container mx-auto py-10 grid grid-cols-1 md:grid-cols-4 gap-8 px-10">
         {/* Left Section: Logo & Social */}
         <div>
           <img
