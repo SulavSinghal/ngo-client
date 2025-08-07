@@ -1,5 +1,5 @@
 import React from 'react';
-import HeroSection from '../components/HomePage/Homepage';
+import HeroSection from '../components/HomePage/HeroSection';
 import BecomeVolunteer from '../components/HomePage/BecomeVolunteer';
 import VoicesOfImpact from '../components/HomePage/VoicesOfImpact';
 import AboutUsSection from '../components/HomePage/AboutUsSection';

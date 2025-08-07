@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 function HeroSection() {
   const [slides, setSlides] = useState([]);
@@ -62,13 +63,14 @@ function HeroSection() {
               {slide.ctaText}
             </a>
           }
-          {slide.secondaryText && slide.secondaryLink &&
-            <a
-              href={slide.secondaryLink}
-              className="px-6 py-3 bg-transparent border border-white rounded-full text-white hover:bg-white hover:text-[#1f326f] transition"
-            >
-              {slide.secondaryText}
-            </a>
+          {slide.secondaryText && 
+            <Link
+            to="/volunteer"
+            onClick={() => window.scrollTo(0, 0)}
+           className="px-6 py-3 bg-transparent border border-white rounded-full text-white hover:bg-white hover:text-[#1f326f] transition"
+          >
+            Join Us Today
+          </Link>
           }
         </div>
       </div>

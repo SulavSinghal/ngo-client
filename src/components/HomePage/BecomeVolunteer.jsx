@@ -62,11 +62,13 @@ const BecomeVolunteer = () => (
           ))}
         </ul>
         <Link
-          to="/volunteer"
-          className="self-start mt-2 bg-[#D4AF37] hover:bg-[#b6912e] transition text-[#1A2A6C] shadow px-8 py-3 rounded-full font-medium text-base focus:outline-none"
-        >
-          Join Us Today
-        </Link>
+  to="/volunteer"
+  onClick={() => window.scrollTo(0, 0)}
+  className="self-start mt-2 bg-[#D4AF37] hover:bg-[#b6912e] transition text-[#1A2A6C] shadow px-8 py-3 rounded-full font-medium text-base focus:outline-none"
+>
+  Join Us Today
+</Link>
+
       </div>
     </div>
   </section>
