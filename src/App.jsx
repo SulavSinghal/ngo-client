@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import ActivitiesPage from './pages/Activity'; // import here
 import ActivityDetails from './components/ActivityDetails';
 import Volunteer from './pages/Volunteer';
+import Team from './pages/Team';
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/activities" element={<ActivitiesPage />} />
             <Route path="/activities/:id" element={<ActivityDetails />} /> 
-            {/* Other routes */}
+            <Route path="/team" element={<Team />} />
             <Route path="/volunteer" element={<Volunteer />} />
           </Routes>
         </main>
