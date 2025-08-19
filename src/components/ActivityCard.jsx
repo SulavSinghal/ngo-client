@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 const ActivityCard = ({ activity }) => {
   if (!activity) return null;
 
@@ -9,7 +9,7 @@ const ActivityCard = ({ activity }) => {
       <div className="h-[224px] bg-gray-200">
         {activity.imageUrl ? (
           <img
-            src={activity.imageUrl}
+            src={`${API_URL}${activity.imageUrl}`}
             alt={activity.title}
             className="w-full h-full object-cover"
           />
