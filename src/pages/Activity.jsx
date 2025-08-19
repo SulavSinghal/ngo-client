@@ -1,4 +1,4 @@
-import ActivitiesHeroSection from "../components/Activity/Activity";
+import ActivitiesHeroSection from "../components/Activity/HeroSection";
 import ActivitiesPages from "../components/Activity/ActivitiesPage"; // Your list/grid cards
 
 function ActivitiesPage() {

@@ -7,6 +7,7 @@ import ActivitiesPage from './pages/Activity'; // import here
 import ActivityDetails from './components/ActivityDetails';
 import Volunteer from './pages/Volunteer';
 import Team from './pages/Team';
+import Blog from './pages/Blog';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="/activities/:id" element={<ActivityDetails />} /> 
             <Route path="/team" element={<Team />} />
             <Route path="/volunteer" element={<Volunteer />} />
+            <Route path="/blog" element={<Blog />} />
           </Routes>
         </main>
         <Footer />
