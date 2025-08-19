@@ -41,7 +41,7 @@ function HeroSection() {
       style={{
         background: slide.backgroundColor || "#1A2A6C",
         color: slide.textColor || "",
-        // backgroundImage: slide.image ? `url(${slide.image})` : undefined,
+        backgroundImage: slide.image ? `url(${slide.image})` : undefined,
         backgroundSize: "cover",
         backgroundPosition: "center"
       }}
