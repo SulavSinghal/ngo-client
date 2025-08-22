@@ -8,7 +8,9 @@ import ActivityDetails from './components/ActivityDetails';
 import Volunteer from './pages/Volunteer';
 import Team from './pages/Team';
 import Blog from './pages/Blog';
-
+import Contact from "./pages/Contact";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
 function App() {
   return (
     <div className="flex flex-col min-h-screen">
@@ -23,6 +25,9 @@ function App() {
             <Route path="/team" element={<Team />} />
             <Route path="/volunteer" element={<Volunteer />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path='/terms' element ={<Terms />} />
+            <Route path='/privacy' element={<Privacy />} />
           </Routes>
         </main>
         <Footer />

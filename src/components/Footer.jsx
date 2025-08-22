@@ -49,7 +49,8 @@ const Footer = () => {
             <li><a href="/about" className="hover:text-[#caa23a] font-ibmplex">About Us</a></li>
             <li><a href="/activities" className="hover:text-[#caa23a] font-ibmplex">Activities</a></li>
             <li><a href="/gallery" className="hover:text-[#caa23a] font-ibmplex">Gallery</a></li>
-            <li><a href="/get-involved" className="hover:text-[#caa23a] font-ibmplex">Get Involved</a></li>
+            <li><a href="/terms" className="hover:text-[#caa23a] font-ibmplex">Terms and Conditions</a></li>
+            <li><a href="/privacy" className="hover:text-[#caa23a] font-ibmplex">Privacy Policy</a></li>
           </ul>
         </div>
         {/* Programs */}
