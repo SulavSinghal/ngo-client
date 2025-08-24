@@ -71,7 +71,7 @@ const ActivitiesSection = ({ limit = 3 }) => {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: false }}
         >
           {displayActivities.map((activity) => (
             <motion.div key={activity._id} variants={cardVariants}   whileHover={{ scale: 1.05, boxShadow: "0 8px 24px rgba(26, 42, 108, 0.2)" }}
