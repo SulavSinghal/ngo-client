@@ -46,22 +46,20 @@ const Footer = () => {
           <h4 className="text-white text-md mb-4" style={{ fontFamily: "'Quicksand', sans-serif" }}>Quick Links</h4>
           <ul className="space-y-2 text-sm" style={{ fontFamily: "'IBM Plex Sans', sans-serif" }}>
             <li><a href="/" className="hover:text-[#caa23a] font-ibmplex">Home</a></li>
-            <li><a href="/about" className="hover:text-[#caa23a] font-ibmplex">About Us</a></li>
+            {/* <li><a href="/about" className="hover:text-[#caa23a] font-ibmplex">About Us</a></li> */}
             <li><a href="/activities" className="hover:text-[#caa23a] font-ibmplex">Activities</a></li>
-            <li><a href="/gallery" className="hover:text-[#caa23a] font-ibmplex">Gallery</a></li>
-            <li><a href="/terms" className="hover:text-[#caa23a] font-ibmplex">Terms and Conditions</a></li>
-            <li><a href="/privacy" className="hover:text-[#caa23a] font-ibmplex">Privacy Policy</a></li>
+            {/* <li><a href="/gallery" className="hover:text-[#caa23a] font-ibmplex">Gallery</a></li> */}
+             <li><a href="/team" className="hover:text-[#caa23a] font-ibmplex">Teams</a></li>
+            <li><a href="/volunteer" className="hover:text-[#caa23a] font-ibmplex">Volunteer</a></li>
+            
           </ul>
         </div>
         {/* Programs */}
         <div>
-          <h4 className="text-white text-md  mb-4" style={{ fontFamily: "'Quicksand', sans-serif" }} >Programs</h4>
+          <h4 className="text-white text-md  mb-4" style={{ fontFamily: "'Quicksand', sans-serif" }} >Others</h4>
           <ul className="space-y-2 text-sm" style={{ fontFamily: "'IBM Plex Sans', sans-serif" }}>
-            <li><a href="#" className="hover:text-[#caa23a]">Social Welfare</a></li>
-            <li><a href="#" className="hover:text-[#caa23a]">Entertainment</a></li>
-            <li><a href="#" className="hover:text-[#caa23a]">Education</a></li>
-            <li><a href="#" className="hover:text-[#caa23a]">Health Awareness</a></li>
-            <li><a href="#" className="hover:text-[#caa23a]">Community Building</a></li>
+           <li><a href="/terms" className="hover:text-[#caa23a] font-ibmplex">Terms and Conditions</a></li>
+            <li><a href="/privacy" className="hover:text-[#caa23a] font-ibmplex">Privacy Policy</a></li>
           </ul>
         </div>
         {/* Contact Us */}
