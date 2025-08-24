@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaMapMarkerAlt, FaEnvelope, FaPhoneAlt, FaClock } from 'react-icons/fa';
 import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from 'react-icons/fa';
-
+import { motion } from 'framer-motion';
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 const ContactPage = () => {
   // State for the contact form data
   const [formData, setFormData] = useState({
@@ -12,7 +13,20 @@ const ContactPage = () => {
     subject: '',
     message: '',
   });
+const slideInLeft = {
+  hidden: { opacity: 0, x: -100 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.8 } },
+};
 
+const slideInRight = {
+  hidden: { opacity: 0, x: 100 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.8 } },
+};
+
+const slideInBottom = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+};
   // State for the contact information fetched from the backend
   const [contactInfo, setContactInfo] = useState(null);
   
@@ -24,7 +38,7 @@ const ContactPage = () => {
     const fetchContactInfo = async () => {
       try {
         // Replace with your actual API endpoint if different
-        const res = await axios.get('http://localhost:5000/api/contact-info');
+        const res = await axios.get(`${API_URL}/api/contact-info`);
         setContactInfo(res.data);
       } catch (err) {
         console.error("Error fetching contact info:", err);
@@ -45,7 +59,7 @@ const ContactPage = () => {
     setStatus('Sending...');
     try {
       // Replace with your actual API endpoint if different
-      await axios.post('http://localhost:5000/api/messages', formData);
+      await axios.post(`${API_URL}/api/messages`, formData);
       setStatus('Message sent successfully!');
       // Reset form after successful submission
       setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
@@ -65,7 +79,13 @@ const ContactPage = () => {
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 bg-white p-8 rounded-lg shadow-lg">
         
         {/* Left Side: Message Form */}
-        <div className="flex flex-col">
+        <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.3 }}
+      variants={slideInLeft}
+    
+        className="flex flex-col">
           <h2 className="text-3xl font-bold text-[#1A2A6C] mb-6" style={{ fontFamily: "'Merriweather', serif" }}>Send Us a Message</h2>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
@@ -103,12 +123,18 @@ const ContactPage = () => {
             </div>
              {status && <p className="text-center text-gray-600 mt-4">{status}</p>}
           </form>
-        </div>
+        </motion.div>
 
         {/* Right Side: Contact Information */}
         <div className="space-y-10">
           {/* Contact Details */}
-          <div className="bg-gray-100 p-8 rounded-lg">
+           <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.3 }}
+        variants={slideInRight}
+        className="bg-gray-100 p-8 rounded-lg"
+      >
             <h2 className="text-3xl text-[#1A2A6C] mb-6 font-bold" style={{ fontFamily: "'Merriweather', serif" }} >Contact Information</h2>
             {contactInfo ? (
               <div className="space-y-6 text-gray-600">
@@ -144,10 +170,16 @@ const ContactPage = () => {
                 </div>
               </div>
             ) : <p>Loading contact information...</p>}
-          </div>
+          </motion.div>
 
           {/* Social Links */}
-          <div className="bg-gray-100 p-8 rounded-lg">
+                <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.3 }}
+        variants={slideInBottom}
+        className="bg-gray-100 p-8 rounded-lg"
+      >
              <h2 className="text-3xl font-bold text-[#1A2A6C] mb-6" style={{ fontFamily: "'Merriweather', serif" }}>Connect With Us</h2>
              <p className="text-gray-600 mb-4">Follow us on social media to stay updated with our latest activities and events.</p>
              <div className="flex space-x-4">
@@ -156,7 +188,7 @@ const ContactPage = () => {
               {contactInfo?.socialLinks?.instagram && <a href={contactInfo.socialLinks.instagram} target="_blank" rel="noopener noreferrer" className="bg-pink-500 text-white p-4 rounded-md hover:bg-pink-600 transition"><FaInstagram /></a>}
               {contactInfo?.socialLinks?.youtube && <a href={contactInfo.socialLinks.youtube} target="_blank" rel="noopener noreferrer" className="bg-red-600 text-white p-4 rounded-md hover:bg-red-700 transition"><FaYoutube /></a>}
              </div>
-          </div>
+          </motion.div>
 
         </div>
       </div>

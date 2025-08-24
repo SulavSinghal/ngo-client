@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
-// API base path (adjust as needed)
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
 export default function VolunteerStoriesSection() {
@@ -17,31 +17,64 @@ export default function VolunteerStoriesSection() {
       .catch(() => setLoading(false));
   }, []);
 
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: { staggerChildren: 0.3, when: "beforeChildren" },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+  };
+
   return (
     <section className="w-full bg-[#f7fafc] py-8 md:py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2
+        <motion.h2
           className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-2 text-[#1F316C]"
           style={{ fontFamily: "'Merriweather', serif" }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
         >
           Volunteer Stories
-        </h2>
-        <p className="text-center text-gray-600 mb-8 md:mb-10 text-sm sm:text-base">
-          Hear from our volunteers about their experiences and the impact they've made.
-        </p>
+        </motion.h2>
+        <motion.p
+          className="text-center text-gray-600 mb-8 md:mb-10 text-sm sm:text-base"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          Hear from our volunteers about their experiences and the impact they&apos;ve made.
+        </motion.p>
 
         {loading ? (
           <div className="flex justify-center py-10">
             <div className="text-gray-500">Loading stories...</div>
           </div>
         ) : stories.length === 0 ? (
-          <div className="text-gray-500 text-center py-10 w-full">No stories yet.</div>
+          <div className="text-gray-500 text-center py-10 w-full">
+            No stories yet.
+          </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 justify-items-center">
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 justify-items-center"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
             {stories.map((story) => (
-              <div
+              <motion.div
                 key={story._id}
                 className="bg-white rounded-xl shadow-md flex flex-col justify-between w-full max-w-sm lg:w-[395px] lg:h-[384px] lg:max-w-none min-h-[350px] lg:min-h-[384px]"
+                variants={cardVariants}
+                whileHover={{ scale: 1.03, boxShadow: "0 8px 24px rgba(0,0,0,0.1)" }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
                 <div className="rounded-t-xl overflow-hidden w-full h-48 lg:h-[224px]">
                   {story.imageUrl ? (
@@ -63,22 +96,43 @@ export default function VolunteerStoriesSection() {
                 </div>
                 <div className="flex-1 p-4 md:p-5 flex flex-col justify-between">
                   <p className="italic text-gray-600 mb-3 md:mb-4 text-sm md:text-base leading-relaxed">
-                    <span className="text-yellow-600 text-base md:text-lg font-semibold mr-1" style={{ fontFamily: "'IBM Plex Sans', sans-serif" }}>"</span>
+                    <span
+                      className="text-yellow-600 text-base md:text-lg font-semibold mr-1"
+                      style={{ fontFamily: "'IBM Plex Sans', sans-serif" }}
+                    >
+                      "
+                    </span>
                     {story.quote}
-                    <span className="text-yellow-600 text-base md:text-lg font-semibold ml-1">"</span>
+                    <span
+                      className="text-yellow-600 text-base md:text-lg font-semibold ml-1"
+                      style={{ fontFamily: "'IBM Plex Sans', sans-serif" }}
+                    >
+                      "
+                    </span>
                   </p>
                   <div className="mt-auto">
                     <div className="flex flex-wrap text-xs md:text-sm text-gray-700 mt-2 items-center">
-                      <span className="font- text-[#1F316C]" style={{ fontFamily: "'Quicksand', sans-serif" }}>{story.name}</span>
+                      <span
+                        className="font- text-[#1F316C]"
+                        style={{ fontFamily: "'Quicksand', sans-serif" }}
+                      >
+                        {story.name}
+                      </span>
                       {story.role && (
-                        <span className="ml-2 text-gray-500"  style={{ fontFamily: "'IBM Plex Sans', sans-serif" }}> {story.role}</span>
+                        <span
+                          className="ml-2 text-gray-500"
+                          style={{ fontFamily: "'IBM Plex Sans', sans-serif" }}
+                        >
+                          {" "}
+                          {story.role}
+                        </span>
                       )}
                     </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         )}
       </div>
     </section>

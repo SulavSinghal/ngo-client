@@ -1,6 +1,6 @@
 import React from "react";
-// If you use icons from a library such as @heroicons/react, you can import them here
-// For demonstration, we'll use simple inline SVGs
+import { motion } from "framer-motion";
+
 
 const features = [
   {
@@ -64,30 +64,50 @@ const features = [
     description: "Learn, lead, and develop while giving back to society.",
   },
 ];
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: { 
+    opacity: 1, 
+    transition: { staggerChildren: 0.3, when: "beforeChildren" }
+  }
+};
 
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.6, ease: "easeOut" }
+  }
+};
 const WhyVolunteerSection = () => (
-  <section className="py-14 bg-white">
+  <motion.section className="py-14 bg-white"  initial="hidden"
+    whileInView="visible"
+    viewport={{ once: false, amount: 0.3 }}
+    variants={containerVariants}>
     <div className="max-w-4xl mx-auto px-4">
-      <h2 className="text-xl md:text-3xl font-bold text-center mb-3 text-[#1F316C]" style={{ fontFamily: "'Merriweather', serif" }}>
+      <motion.h2 className="text-xl md:text-3xl font-bold text-center mb-3 text-[#1F316C]" style={{ fontFamily: "'Merriweather', serif" }} variants={itemVariants}>
         Why Volunteer With Us
-      </h2>
-      <p className="text-center text-gray-600 mb-10" style={{ fontFamily: "'IBM Plex Sans', sans-serif" }}>
+      </motion.h2>
+      <motion.p className="text-center text-gray-600 mb-10" style={{ fontFamily: "'IBM Plex Sans', sans-serif" }} variants={itemVariants}>
         Discover how volunteering with Mwanam can transform lives &#8212; including your own.
-      </p>
+      </motion.p>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
         {features.map((item, idx) => (
-          <div
+          <motion.div
             key={idx}
             className="bg-gray-50 rounded-lg shadow-sm p-8 text-center flex flex-col items-center"
-          >
+           variants={itemVariants}
+            whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(0,0,0,0.1)" }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}>
             {item.icon}
             <h3 className="text-lg font-semibold mb-2" style={{ fontFamily: "'Merriweather', serif" }}>{item.title}</h3>
             <p className="text-gray-600 text-sm" style={{ fontFamily: "'IBM Plex Sans', sans-serif" }}>{item.description}</p>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>
-  </section>
+  </motion.section>
 );
 
 export default WhyVolunteerSection;

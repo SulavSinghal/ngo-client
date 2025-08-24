@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { motion } from "framer-motion";
 // Replace with your actual image path in your public folder or import as a module
 const VOLUNTEER_IMAGE = "/assets/form.png";
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
@@ -51,14 +51,26 @@ export default function VolunteerForm() {
       setError("Submission failed. Please try again.");
     }
   }
+const slideFromLeft = {
+    hidden: { opacity: 0, x: -100 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.8 } },
+  };
 
+  const slideFromRight = {
+    hidden: { opacity: 0, x: 100 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.8 } },
+  };
   return (
     <div id="volunteer-form" className="min-h-screen bg-[#1F316C] flex items-center justify-center py-8 px-2">
       <div className="flex flex-col md:flex-row shadow-xl rounded-2xl overflow-hidden bg-white max-w-4xl w-full mx-auto">
         {/* Form Section */}
-        <form
+        <motion.form
           className="flex-1 p-8 flex flex-col justify-center min-w-[320px] w-full md:w-[448px]"
           onSubmit={handleSubmit}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.3 }}
+          variants={slideFromLeft}
         >
           <h2 className="text-2xl font-bold mb-1 text-[#1F316C]"  style={{ fontFamily: "'Merriweather', serif" }}>Join Us</h2>
           <p className="mb-5 text-sm text-gray-700">
@@ -162,17 +174,20 @@ export default function VolunteerForm() {
           {error && (
             <div className="text-red-500 mt-4 text-center">{error}</div>
           )}
-        </form>
+        </motion.form>
 
         {/* Image Section */}
-        <div className="hidden md:block md:w-[400px] bg-gray-100 relative">
+        <motion.div className="hidden md:block md:w-[400px] bg-gray-100 relative"  initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.3 }}
+          variants={slideFromRight}>
           <img
             src={VOLUNTEER_IMAGE}
             alt="Volunteering"
             className="w-full h-full object-cover"
             style={{ minHeight: 430, maxHeight: 620 }}
           />
-        </div>
+        </motion.div>
       </div>
     </div>
   );

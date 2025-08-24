@@ -17,6 +17,7 @@ const HeroSection = () => {
         initial={{ opacity: 0, scale: 1.1 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: "easeOut" }}
+        viewport={{once: false}}
       />
 
       {/* Overlay for better contrast */}
@@ -30,6 +31,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut", delay: 0.5 }}
+           viewport={{once: false}}
         >
           Meet Our Team
         </motion.h1>
@@ -39,6 +41,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut", delay: 0.7 }}
+           viewport={{once: false}}
         >
           Mwanam is powered by a team of changemakers who are passionate about
           creating equal opportunities for all. Together, we dream, build, and
