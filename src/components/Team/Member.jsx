@@ -1,8 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { motion } from 'framer-motion';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/teamMembers';
 const UPLOADS_URL = 'http://localhost:5000/uploads/';
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: { 
+    opacity: 1, 
+    transition: { staggerChildren: 0.2, when: "beforeChildren" } 
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.6, ease: "easeOut" }
+  },
+};
 
 function ExecutiveMembers() {
   const [members, setMembers] = useState([]);
@@ -12,19 +30,44 @@ function ExecutiveMembers() {
   }, []);
 
   return (
-    <section className="max-w-5xl mx-auto py-12 px-4">
-      <h1 className="text-center text-4xl font-bold text-[#1F316C] leading-tight mb-2"  style={{ fontFamily: "'Merriweather', serif" }}>
-        Executive Members
-      </h1>
-      <p className="text-center text-lg font-[18px] mb-10" style={{ fontFamily: "'IBM Plex Sans', sans-serif" }}>
-        Meet the dedicated individuals who lead our initiatives and drive our mission forward.
-      </p>
+    <motion.section 
+      className="max-w-5xl mx-auto py-12 px-4"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
+
+<motion.h1
+  className="text-center text-4xl font-bold text-[#1F316C] leading-tight mb-2"
+  style={{ fontFamily: "'Merriweather', serif" }}
+  initial={{ opacity: 0, y: 40 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: false }}
+  transition={{ duration: 0.8, ease: "easeOut" }}
+>
+  Executive Members
+</motion.h1>
+
+<motion.p
+  className="text-center text-lg font-[18px] mb-10"
+  style={{ fontFamily: "'IBM Plex Sans', sans-serif" }}
+  initial={{ opacity: 0, y: 40 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: false }}
+  transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+>
+  Meet the dedicated individuals who lead our initiatives and drive our mission forward.
+</motion.p>
+
       <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-8 gap-y-12 place-items-center justify-center">
         {members.map(member => (
-          <div
+          <motion.div
             key={member._id}
             className="bg-white rounded-[12px] shadow-[0_2px_4px_rgba(0,0,0,0.10),0_4px_6px_rgba(0,0,0,0.10)] 
                        flex flex-col sm:flex-row items-start gap-6 w-full max-w-[496px] min-h-[284px] relative px-6 py-6"
+            variants={cardVariants}
+            whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(0,0,0,0.2)" }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
           >
             {/* Profile Image */}
             {member.image && (
@@ -45,11 +88,17 @@ function ExecutiveMembers() {
                   {member.name}
                 </h3>
                 <div className="text-[#1F817C] text-[16px] font-medium mb-[6px]">{member.title}</div>
-                <p className="text-[#383C52] text-[15px] font-normal mb-4" style={{ fontFamily: "'IBM Plex Sans', sans-serif" }}>{member.bio}</p>
+                <p
+                  className="text-[#383C52] text-[15px] font-normal mb-4"
+                  style={{ fontFamily: "'IBM Plex Sans', sans-serif" }}
+                >
+                  {member.bio}
+                </p>
               </div>
 
               {/* Social Links */}
               <div className="flex gap-5 mt-auto">
+                {/* LinkedIn */}
                 {member.socials?.linkedin && (
                   <a
                     href={member.socials.linkedin}
@@ -63,6 +112,7 @@ function ExecutiveMembers() {
                     </svg>
                   </a>
                 )}
+                {/* Twitter */}
                 {member.socials?.twitter && (
                   <a
                     href={member.socials.twitter}
@@ -76,6 +126,7 @@ function ExecutiveMembers() {
                     </svg>
                   </a>
                 )}
+                {/* Email */}
                 {member.socials?.email && (
                   <a
                     href={`mailto:${member.socials.email}`}
@@ -89,10 +140,10 @@ function ExecutiveMembers() {
                 )}
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
-    </section>
+    </motion.section>
   );
 }
 

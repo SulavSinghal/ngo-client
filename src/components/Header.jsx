@@ -6,10 +6,10 @@ const Navbar = () => {
   const navLinks = [
     { text: 'Home', path: '/' },
     { text: 'Activities', path: '/activities' },
-    {text:'Blog', path:'/blog'},
+    // {text:'Blog', path:'/blog'},
     {text: 'Team', path: '/team'},
-    { text: 'About', path: '/about' },
-    { text: 'Gallery', path: '/gallery' },
+    // { text: 'About', path: '/about' },
+    // { text: 'Gallery', path: '/gallery' },
     { text: 'Contact', path: '/contact' },
   ];
 
