@@ -1,4 +1,5 @@
 // components/AboutUsSection.jsx
+import { motion } from "framer-motion";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
@@ -73,8 +74,27 @@ const AboutUsSection = () => {
   if (error) return <div>{error}</div>;
   if (!content) return <div>No content available.</div>;
 
+    // Animation Variants
+  const parentVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        staggerChildren: 0.25
+      }
+    }
+  };
+  const childVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 }
+  };
+
   return (
-   <section
+   <motion.section
+     initial="hidden"
+      animate="visible"
+      variants={parentVariants}
   style={{
     textAlign: 'center',
     padding: '60px 20px 36px 20px',
@@ -82,9 +102,13 @@ const AboutUsSection = () => {
     background: '#fff', // or use your site's background
   }}
 >
-  <img
+  <motion.img
     src="./assets/logo.png"
     alt="Mwnam Foundation Logo"
+    initial={{ opacity: 0, y: 60 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: false }}
+    transition={{ duration: 0.7 }}
     style={{
       display: 'block',
       marginLeft: 'auto',
@@ -94,18 +118,26 @@ const AboutUsSection = () => {
     }}
   />
 
-  <h1 className="text-3xl font-bold mb-4 text-[#1A2A6C]"
+  <motion.h1 className="text-3xl font-bold mb-4 text-[#1A2A6C]"
     style={{
       fontFamily: "'Merriweather', serif",
     }}
+  initial={{ opacity: 0, y: 60 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: false }}
+      transition={{ duration: 0.6, delay: 0.2 }}
   >
     {content.heading}
-  </h1>
+  </motion.h1>
 
   
-  <p className="font-sans text-gray-700 max-w-6xl mx-auto mb-12 leading-relaxed text-md">
+  <motion.p className="font-sans text-gray-700 max-w-6xl mx-auto mb-12 leading-relaxed text-md"
+    initial={{ opacity: 0, y: 60 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: false }}
+        transition={{ duration: 0.7, delay: 0.35 }} >
   {content.description}
-</p>
+</motion.p>
 
 
   <div
@@ -120,8 +152,11 @@ const AboutUsSection = () => {
       const IconComponent = statIcons[index];
       return (
         // This div is now a flex column to stack items vertically
-       <div
+       <motion.div
   key={index}
+  variants={childVariants}
+              whileHover={{ scale: 1.09, boxShadow: "0 8px 30px rgba(44, 122, 123, 0.18)" }}
+              transition={{ duration: 0.2 }}
   style={{
     width: '170px',                       // fix width for alignment
     display: 'flex',
@@ -148,12 +183,12 @@ const AboutUsSection = () => {
   <div style={{ color: '#555', fontSize: '1rem', letterSpacing: '.1px', marginTop: '1px', fontFamily: "'Quicksand', sans-serif"}}>
     {stat.title}
   </div>
-</div>
+</motion.div>
 
       );
     })}
   </div>
-</section>
+</motion.section>
 
   );
 };
