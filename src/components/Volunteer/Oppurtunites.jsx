@@ -73,7 +73,7 @@ export default function VolunteerOpportunitiesSection() {
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
                 <div className="flex items-center mb-3">
-                  <span className="inline-block w-8 h-8 rounded flex items-center justify-center mr-2">
+                  <span className="inline-block w-8 h-8 rounded items-center justify-center mr-2">
                     {op.icon ? (
                       <img src={op.icon} alt="" className="w-6 h-6" />
                     ) : (

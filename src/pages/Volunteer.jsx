@@ -26,7 +26,7 @@ const Volunteer = () => {
       <WhyVolunteerSection />
 
       <VolunteerStoriesSection />
-      <VolunteerOpportunitiesSection />
+      {/* <VolunteerOpportunitiesSection /> */}
       <div id="volunteer-form">
         <VolunteerApplication />
       </div>

@@ -11,7 +11,7 @@ const HeroSection = () => {
     >
       {/* Animated Background Image with fade and scale-in */}
       <motion.img
-        src="/your-background-image.jpg" // Replace with your actual image path
+        src="/assets/volunteer2.png" // Replace with your actual image path
         alt="Volunteer Background"
         className="absolute inset-0 w-full h-full object-cover z-0"
         initial={{ opacity: 0, scale: 1.1 }}

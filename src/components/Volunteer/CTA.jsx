@@ -42,8 +42,8 @@ export default function StillHaveQuestionsCard() {
               <path d="M1.5 4C0.671875 4 0 4.67188 0 5.5C0 5.97187 0.221875 6.41562 0.6 6.7L7.4 11.8C7.75625 12.0656 8.24375 12.0656 8.6 11.8L15.4 6.7C15.7781 6.41562 16 5.97187 16 5.5C16 4.67188 15.3281 4 14.5 4H1.5ZM0 7.5V14C0 15.1031 0.896875 16 2 16H14C15.1031 16 16 15.1031 16 14V7.5L9.2 12.6C8.4875 13.1344 7.5125 13.1344 6.8 12.6L0 7.5Z" fill="#1F316C" />
             </svg>
           </span>
-          <a href="mailto:volunteer@mwanam.org" className="text-[#233264] hover:underline text-sm md:text-base" style={{ fontFamily: "'IBM Plex Sans', sans-serif" }}>
-            volunteer@mwanam.org
+          <a href="mailto:mwnam2024@gmail.com" className="text-[#233264] hover:underline text-sm md:text-base" style={{ fontFamily: "'IBM Plex Sans', sans-serif" }}>
+            mwnam2024@gmail.com
           </a>
         </div>
         {/* Phone */}
@@ -61,8 +61,8 @@ export default function StillHaveQuestionsCard() {
               </defs>
             </svg>
           </span>
-          <a href="tel:+1234567890" className="text-[#233264] hover:underline text-sm md:text-base" style={{ fontFamily: "'IBM Plex Sans', sans-serif" }}>
-            +123 456 7890
+          <a href="tel:81329 73743" className="text-[#233264] hover:underline text-sm md:text-base" style={{ fontFamily: "'IBM Plex Sans', sans-serif" }}>
+            81329 73743
           </a>
         </div>
       </div>
