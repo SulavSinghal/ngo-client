@@ -37,7 +37,7 @@ const buttonVariants = {
 function BlogPage() {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All Blogs");
-  const [activities, setActivities] = useState([]);
+  const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
 
   // Pagination states
@@ -62,16 +62,16 @@ function BlogPage() {
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        setActivities(data);
+        setBlogs(data);
         setLoading(false);
       })
       .catch(() => setLoading(false));
   }, [selectedCategory]);
 
   // Calculate paginated activities
-  const totalPages = Math.ceil(activities.length / ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(blogs.length / ITEMS_PER_PAGE);
   const startIdx = (currentPage - 1) * ITEMS_PER_PAGE;
-  const paginatedActivities = activities.slice(startIdx, startIdx + ITEMS_PER_PAGE);
+  const paginatedActivities = blogs.slice(startIdx, startIdx + ITEMS_PER_PAGE);
 
   // Helper to change page safely
   const gotoPage = (page) => {
@@ -102,9 +102,9 @@ function BlogPage() {
             key={selectedCategory + currentPage} // re-animate on filter/page change
           >
             <AnimatePresence>
-              {paginatedActivities.map((activity,idx) => (
+              {paginatedActivities.map((blogs,idx) => (
                 <motion.div
-                  key={activity._id}
+                  key={blogs._id}
                   initial="hidden"
                   animate="visible"
                   variants={idx % 2 === 0 ? leftVariant : rightVariant}
@@ -113,7 +113,7 @@ function BlogPage() {
                 viewport={false}
                 
                 >
-                  <BlogCard activity={activity} />
+                  <BlogCard blog={blogs} />
                 </motion.div>
               ))}
             </AnimatePresence>

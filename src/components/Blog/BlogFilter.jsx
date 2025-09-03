@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-function BlogsFilterBar({ categories, selectedCategory, setSelectedCategory }) {
+function BlogsFilterBar({ categories = [], selectedCategory, setSelectedCategory }) {
   return (
     <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-16 mt-8">
       {/* LHS: Static Text */}
