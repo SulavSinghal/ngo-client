@@ -69,15 +69,15 @@ const Footer = () => {
             <li className="flex items-center"
 >
               <span className="material-icons text-[#caa23a] mr-2">location_on</span>
-              123 Community Street, City, Country
+             Backside Govt.Hr.Sec, School, Rono, Doimukh-791112 <br/>Arunachal Pradesh <br/>India
             </li>
             <li className="flex items-center " >
               <span className="material-icons text-[#caa23a] mr-2">email</span>
-              info@mwnam.org
+             mwnam2024@gmail.com
             </li>
             <li className="flex items-center">
               <span className="material-icons text-[#caa23a] mr-2">call</span>
-              +123 456 7890
+             81329 73743
             </li>
           </ul>
         </div>

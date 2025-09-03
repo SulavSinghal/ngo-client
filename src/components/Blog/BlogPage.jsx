@@ -1,9 +1,38 @@
 import React, { useState, useEffect } from "react";
-import BlogFilter from "./BlogFilter";
+import BlogsFilterBar from "./BlogFilter";
 import BlogCard from "../BlogCard";
+import { motion, AnimatePresence } from "framer-motion";
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
 const ITEMS_PER_PAGE = 6;
+
+const gridVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { staggerChildren: 0.1, when: "beforeChildren" } 
+  }
+};
+
+const leftVariant = {
+  hidden: { opacity: 0, x: -100 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.7 } }
+};
+
+const rightVariant = {
+  hidden: { opacity: 0, x: 100 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.7 } }
+};
+const cardVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4 } }
+};
+
+const buttonVariants = {
+  hover: { scale: 1.1 },
+  tap: { scale: 0.95 }
+};
 
 function BlogPage() {
   const [categories, setCategories] = useState([]);
@@ -16,7 +45,7 @@ function BlogPage() {
 
   // Fetch categories on mount
   useEffect(() => {
-    fetch(`${API_URL}/api/blog/categories`)
+    fetch(`${API_URL}/api/blogs/categories`)
       .then((res) => res.json())
       .then((cats) => setCategories(cats))
       .catch(() => setCategories([]));
@@ -26,7 +55,7 @@ function BlogPage() {
   useEffect(() => {
     setLoading(true);
     setCurrentPage(1); // Reset to first page on filter change
-    let url = `${API_URL}/api/blog`;
+    let url = `${API_URL}/api/blogs`;
     if (selectedCategory !== "All Blogs") {
       url += `?category=${encodeURIComponent(selectedCategory)}`;
     }
@@ -53,7 +82,7 @@ function BlogPage() {
 
   return (
     <section className="px-4 max-w-6xl mx-auto">
-      <BlogFilter
+      <BlogsFilterBar
         categories={categories}
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
@@ -65,66 +94,102 @@ function BlogPage() {
         <p className="text-center text-gray-500">No Blogs found.</p>
       ) : (
         <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {paginatedActivities.map((activity) => (
-              <BlogCard key={activity._id} activity={activity} />
-            ))}
-          </div>
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+            variants={gridVariants}
+            initial="hidden"
+            animate="visible"
+            key={selectedCategory + currentPage} // re-animate on filter/page change
+          >
+            <AnimatePresence>
+              {paginatedActivities.map((activity,idx) => (
+                <motion.div
+                  key={activity._id}
+                  initial="hidden"
+                  animate="visible"
+                  variants={idx % 2 === 0 ? leftVariant : rightVariant}
+                   whileHover={{ scale: 1.05, boxShadow: "0 8px 24px rgba(0, 0, 0, 0.15)" }}
+    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                viewport={false}
+                
+                >
+                  <BlogCard activity={activity} />
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </motion.div>
 
           {/* Pagination Controls */}
           <div className="flex justify-center items-center mt-8 gap-2 pb-16">
-  {/* Prev */}
-  <button
-    onClick={() => gotoPage(currentPage - 1)}
-    disabled={currentPage === 1}
-    className={`w-10 h-10 rounded-full flex items-center justify-center border transition
-      ${currentPage === 1
-        ? "text-gray-400 border-gray-200 bg-gray-50 cursor-not-allowed"
-        : "text-blue-700 border-blue-200 hover:bg-blue-100"}
-    `}
-    aria-label="Previous page"
-  >
-    <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-      <path d="M15 19l-7-7 7-7" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  </button>
+            <motion.button
+              onClick={() => gotoPage(currentPage - 1)}
+              disabled={currentPage === 1}
+              className={`w-10 h-10 rounded-full flex items-center justify-center border transition ${
+                currentPage === 1
+                  ? "text-gray-400 border-gray-200 bg-gray-50 cursor-not-allowed"
+                  : "text-blue-700 border-blue-200 hover:bg-blue-100"
+              }`}
+              aria-label="Previous page"
+              variants={buttonVariants}
+              whileHover="hover"
+              whileTap="tap"
+            >
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                viewBox="0 0 24 24"
+              >
+                <path d="M15 19l-7-7 7-7" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </motion.button>
 
-  {/* Page Numbers */}
-  {Array.from({ length: totalPages }, (_, idx) => {
-    const pageNum = idx + 1;
-    const isActive = currentPage === pageNum;
-    return (
-      <button
-        key={pageNum}
-        onClick={() => gotoPage(pageNum)}
-        className={`w-10 h-10 rounded-full border transition
-          ${isActive
-            ? "bg-blue-900 text-white border-blue-900 shadow"
-            : "bg-white text-blue-900 border-blue-200 hover:bg-blue-100"}
-          font-semibold flex items-center justify-center`}
-      >
-        {pageNum}
-      </button>
-    );
-  })}
+            {Array.from({ length: totalPages }, (_, idx) => {
+              const pageNum = idx + 1;
+              const isActive = currentPage === pageNum;
+              return (
+                <motion.button
+                  key={pageNum}
+                  onClick={() => gotoPage(pageNum)}
+                  className={`w-10 h-10 rounded-full border transition ${
+                    isActive
+                      ? "bg-blue-900 text-white border-blue-900 shadow"
+                      : "bg-white text-blue-900 border-blue-200 hover:bg-blue-100"
+                  } font-semibold flex items-center justify-center`}
+                  variants={buttonVariants}
+                  whileHover="hover"
+                  whileTap="tap"
+                >
+                  {pageNum}
+                </motion.button>
+              );
+            })}
 
-  {/* Next */}
-  <button
-    onClick={() => gotoPage(currentPage + 1)}
-    disabled={currentPage === totalPages}
-    className={`w-10 h-10 rounded-full flex items-center justify-center border transition
-      ${currentPage === totalPages
-        ? "text-gray-400 border-gray-200 bg-gray-50 cursor-not-allowed"
-        : "text-blue-700 border-blue-200 hover:bg-blue-100"}
-    `}
-    aria-label="Next page"
-  >
-    <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-      <path d="M9 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  </button>
-</div>
-
+            <motion.button
+              onClick={() => gotoPage(currentPage + 1)}
+              disabled={currentPage === totalPages}
+              className={`w-10 h-10 rounded-full flex items-center justify-center border transition ${
+                currentPage === totalPages
+                  ? "text-gray-400 border-gray-200 bg-gray-50 cursor-not-allowed"
+                  : "text-blue-700 border-blue-200 hover:bg-blue-100"
+              }`}
+              aria-label="Next page"
+              variants={buttonVariants}
+              whileHover="hover"
+              whileTap="tap"
+            >
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                viewBox="0 0 24 24"
+              >
+                <path d="M9 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </motion.button>
+          </div>
         </>
       )}
     </section>
