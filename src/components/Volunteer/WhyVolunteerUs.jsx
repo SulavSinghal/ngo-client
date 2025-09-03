@@ -81,7 +81,7 @@ const itemVariants = {
   }
 };
 const WhyVolunteerSection = () => (
-  <motion.section className="py-14 bg-white"  initial="hidden"
+  <motion.section className="py-14 bg-white relative overflow-hidden"  initial="hidden"
     whileInView="visible"
     viewport={{ once: false, amount: 0.3 }}
     variants={containerVariants}>

@@ -46,7 +46,7 @@ const Footer = () => {
           <h4 className="text-white text-md mb-4" style={{ fontFamily: "'Quicksand', sans-serif" }}>Quick Links</h4>
           <ul className="space-y-2 text-sm" style={{ fontFamily: "'IBM Plex Sans', sans-serif" }}>
             <li><a href="/" className="hover:text-[#caa23a] font-ibmplex">Home</a></li>
-            {/* <li><a href="/about" className="hover:text-[#caa23a] font-ibmplex">About Us</a></li> */}
+            <li><a href="/blog" className="hover:text-[#caa23a] font-ibmplex">Blogs</a></li>
             <li><a href="/activities" className="hover:text-[#caa23a] font-ibmplex">Activities</a></li>
             {/* <li><a href="/gallery" className="hover:text-[#caa23a] font-ibmplex">Gallery</a></li> */}
              <li><a href="/team" className="hover:text-[#caa23a] font-ibmplex">Teams</a></li>
